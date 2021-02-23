@@ -6,10 +6,27 @@
 
 #   Source  :   https://realpython.com/python-sockets/
 import socket
+import os
+import logging
 
 #   Define the IP information for the server socket
 HOST = '127.0.0.1'
 PORT = 50000
+
+#   Name of the log file
+path = "./logs/test_log_file.txt"
+
+#   Check if the file exists in the directory, if not, create it
+if not os.path.isfile(path):
+
+    #   Create the logs directory
+    os.mkdir("./logs")
+
+    #   Create the logging file
+    logging.basicConfig(filename=path, level=logging.WARNING)
+
+#   Start a log message
+logging.debug("Debug information")
 
 #   Create the socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
