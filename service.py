@@ -19,27 +19,18 @@ from configparser import ConfigParser
 #
 ######################################################################################
 
-
+config_object = ConfigParser()
+config_object.read("config.ini")
 
 #   Define the IP information for the server socket
-HOST = '127.0.0.1'
-PORT = 50000
-
-
-#   Prompts that the server is running
-print("Starting Log server on IP: ", HOST, PORT)
-print("Current version: 1.0")
-
-
+HOST = config_object["SERVER-DETAILS"]["HOST"]
+PORT = int(config_object["SERVER-DETAILS"]["PORT"])
 
 ######################################################################################
 #
 #   LOAD LOG FILE FLAGS
 #
 ######################################################################################
-config_object = ConfigParser()
-
-config_object.read("config.ini")
 
 appendLog = config_object["APPEND"]
 
@@ -61,7 +52,7 @@ enableLog = config_object["OFF"]
 
 
 #   Check if the program should log information, this variable will be used throughout the program
-if enableLog == 0:
+if enableLog["isEnabled"] == 0:
     print("Log file ENABLED")
 else:
     print("Log file DISABLED")
@@ -125,21 +116,37 @@ logging.critical('This is a test log')
 ######################################################################################
 
 #   Create the socket
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+except e:
+    print("Error: Creating socket failed: %s" %e)
+    sys.exit(1)
 
 s.bind((HOST, PORT))
+
+#   Prompts that the server is running
+print("Starting Log server on IP: ", HOST, PORT)
+print("Current version: 1.0")
 
 #   Listen for a client connection
 s.listen(1)
 
 #   Accept the connection
-conn, addr = s.accept()
+try:
+    conn, addr = s.accept()
+except e:
+    print("Error: Accepting client failed: %s" %e)
+    sys.exit(1)
 
 
 #   Wait until data has been recieved from the client
 while 1:
 
-    data = conn.recv(1024)
+    try:
+        data = conn.recv(1024)
+    except e:
+        print("Error: Receiving data failed: %s" %e)
+        sys.exit(1)
 
     #   Check if data was recieved
     if not data:

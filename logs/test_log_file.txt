@@ -1,0 +1,5 @@
+DEBUG:root:This is a test log
+INFO:root:This is a test log
+WARNING:root:This is a test log
+ERROR:root:This is a test log
+CRITICAL:root:This is a test log
