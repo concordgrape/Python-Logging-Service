@@ -21,22 +21,36 @@ func main() {
 	protocolType := "tcp"
 	ip := "127.0.0.1:50000"
 
-	//	Read log entry from keyboard
-	reader := bufio.NewReader(os.Stdin)
+	// Get arguments from the command line
+	argv := os.Args[1:]
+	fmt.Println(argv)
 
-	fmt.Println("Please enter a log: ")
+	// Check if '-test' command line arg is given for automated testing
+	if (len(argv) == 1 && argv[0] == "-test"){
+		
 
-	log, _ := reader.ReadString('\n')
 
-	//	Create client side socket
-	conn, _ := net.Dial(protocolType, ip)
 
-	//	Send the log that the user entered into the socket
-	fmt.Fprintf(conn, log)
+	// Manual log testing
+	} else {
+		
+		//	Read log entry from keyboard
+		reader := bufio.NewReader(os.Stdin)
 
-	//	Read message sent back from the server
-	message, _ := bufio.NewReader(conn).ReadString('\n')
+		fmt.Println("Please enter a log: ")
 
-	//	Display the message
-	fmt.Println("Recieved back from server: " + message)
+		log, _ := reader.ReadString('\n')
+
+		//	Create client side socket
+		conn, _ := net.Dial(protocolType, ip)
+
+		//	Send the log that the user entered into the socket
+		fmt.Fprintf(conn, log)
+
+		//	Read message sent back from the server
+		message, _ := bufio.NewReader(conn).ReadString('\n')
+
+		//	Display the message
+		fmt.Println("Recieved back from server: " + message)
+	}
 }
