@@ -62,6 +62,7 @@ else:
     fileType = "a"  #   Append the log file
 
 #   If the ALL level log is set, enable everything else
+#   If this is set, we DO NOT need to check allLog['isEnabled']
 if allLog["isEnabled"] == '1':
     fatalLog["isEnabled"] = '1'
     errorLog["isEnabled"] = '1'
@@ -151,7 +152,8 @@ try:
 except e:
     if enableLog == 0:
         if fatalLog["isEnabled"] == '1':
-            logging.critical('Error: Creating socket failed: %s' %e)
+            logging.getLogger().setLevel(FATAL)
+            logging.log(FATAL, 'Error: Creating socket failed: %s' %e)
         elif traceLog["isEnabled"] == '1':
             logging.getLogger().setLevel(TRACE)
             logging.log(TRACE, 'Error: Creating socket failed: %s' %e)
@@ -194,7 +196,8 @@ while 1:
     except e:
         if enableLog == 0:
             if fatalLog["isEnabled"] == '1':
-                logging.critical('Error: Accepting client failed: %s' %e)
+                logging.getLogger().setLevel(FATAL)
+                logging.log(FATAL, 'Error: Accepting client failed: %s' %e)
             elif traceLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(TRACE)
                 logging.log(TRACE, 'Error: Accepting client failed: %s' %e)
@@ -206,10 +209,12 @@ while 1:
     except e:
         if enableLog == 0:
             if fatalLog["isEnabled"] == '1':
-                logging.critical('Error: Receiving data failed: %s' %e)
+                logging.getLogger().setLevel(FATAL)
+                logging.log(FATAL, 'Error: Receiving data failed: %s' %e)
             elif traceLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(TRACE)
                 logging.log(TRACE, 'Error: Receiving data failed: %s' %e)
+                logging.log(TRACE, 'Server is shutting down...')
         sys.exit(1)
 
     #   Check if data was recieved
