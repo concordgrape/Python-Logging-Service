@@ -11,7 +11,6 @@ import logging
 from configparser import ConfigParser
 from datetime import datetime
 
-
 # CONSTANT DEFINITIONS
 END_SERVICE = "end\r\n"
 
@@ -60,8 +59,7 @@ enableLog = int(config_object["OFF"]["isEnabled"])
 if appendLog["shouldAppend"] == '0;':   #   For some reason this config var adds a semicolon?
     fileType = "w"  #   Delete and create new log file
 else:
-    fileType = "a"  #   
-
+    fileType = "a"  #   Append the log file
 
 
 ######################################################################################
@@ -80,6 +78,41 @@ if not os.path.isfile(DIR+FILE_NAME):
     f = open(DIR+FILE_NAME, fileType)
 
 
+
+
+
+######################################################################################
+#
+#   CREATE CUSTOM LOG LEVELS
+#
+######################################################################################
+
+#   ALL LEVEL
+ALL = 1
+logging.addLevelName(ALL, "ALL")
+def all(self, message, *args, **kws):
+    self.log(ALL, message, *args, **kws) 
+logging.Logger.all = all
+
+
+#   FATAL LEVEL
+FATAL = 2
+logging.addLevelName(FATAL, "FATAL")
+def fatal(self, message, *args, **kws):
+    self.log(FATAL, message, *args, **kws) 
+logging.Logger.fatal = fatal
+
+
+#   TRACE LEVEL
+TRACE = 3
+logging.addLevelName(TRACE, "TRACE")
+def trace(self, message, *args, **kws):
+    self.log(TRACE, message, *args, **kws) 
+logging.Logger.trace = trace
+
+
+
+
 ######################################################################################
 #
 #   OPEN AND WRITE TO LOG FILE
@@ -91,7 +124,6 @@ datefmt='%Y-%m-%d %H:%M:%S',
 filename=DIR+FILE_NAME, 
 filemode=fileType, 
 level=logging.DEBUG)
-
 
 
 ######################################################################################
