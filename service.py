@@ -8,6 +8,7 @@
 import socket
 import os
 import logging
+import sys
 from configparser import ConfigParser
 from datetime import datetime
 
@@ -149,7 +150,7 @@ if enableLog == 0:
 #   Create the socket
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-except e:
+except Exception as e:
     if enableLog == 0:
         if fatalLog["isEnabled"] == '1':
             logging.getLogger().setLevel(FATAL)
@@ -180,7 +181,6 @@ if enableLog == 0:
 #
 ######################################################################################
 while 1:
-    
     #   Listen for a client connection
     s.listen(1)
 
@@ -193,7 +193,7 @@ while 1:
             elif traceLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(TRACE)
                 logging.log(TRACE, 'Client connected')
-    except e:
+    except Exception as e:
         if enableLog == 0:
             if fatalLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(FATAL)
@@ -205,8 +205,21 @@ while 1:
 
 
     try:
-        data = conn.recv(1024)
-    except e:
+        while 1:
+            #   Check if data was recieved
+            data = conn.recv(1024)
+            if not data:
+                break
+            else:
+                #   Send the message back to the client
+                conn.sendall(data)
+
+                if debugLog["isEnabled"] == '1':
+                    logging.debug("Recieved data: %s" %data)
+                elif traceLog["isEnabled"] == '1':
+                    logging.getLogger().setLevel(TRACE)
+                    logging.log("Recieved data: %s" %data)
+    except Exception as e:
         if enableLog == 0:
             if fatalLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(FATAL)
@@ -216,10 +229,6 @@ while 1:
                 logging.log(TRACE, 'Error: Receiving data failed: %s' %e)
                 logging.log(TRACE, 'Server is shutting down...')
         sys.exit(1)
-
-    #   Check if data was recieved
-    if not data:
-        break
 
     #   Display message
     if enableLog == 0:
@@ -234,15 +243,6 @@ while 1:
                 logging.log(TRACE, 'End message received - shutting down server')
                 logging.log(TRACE, 'Client disconnected')
             break
-        
-        if debugLog["isEnabled"] == '1':
-            logging.debug(('Received: ', data))
-        elif traceLog["isEnabled"] == '1':
-            logging.getLogger().setLevel(TRACE)
-            logging.log(TRACE, 'Data recieved: %s' %data)
-
-    #   Send the message back to the client
-    conn.sendall(data)
 
     #   Close the socket connection
     if enableLog == 0:

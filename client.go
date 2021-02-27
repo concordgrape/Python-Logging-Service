@@ -11,10 +11,11 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 )
 
 const (
-	TEST_ARG = "-test"
+	testArg = "-test"
 )
 
 func main() {
@@ -29,33 +30,38 @@ func main() {
 	argv := os.Args[1:]
 
 	// Check if '-test' command line arg is given for automated testing
-	if (len(argv) == 1 && argv[0] == TEST_ARG){
-		
+	if len(argv) == 1 && argv[0] == testArg {
+
 		fmt.Println("Starting automated tests...")
 		// RUN THROUGH TESTS HERE ******
 
-	
-
-	// Manual log testing
+		// Manual log testing
 	} else {
-		
-		//	Read log entry from keyboard
-		reader := bufio.NewReader(os.Stdin)
-
-		fmt.Println("Please enter a log: ")
-
-		log, _ := reader.ReadString('\n')
 
 		//	Create client side socket
 		conn, _ := net.Dial(protocolType, ip)
 
-		//	Send the log that the user entered into the socket
-		fmt.Fprintf(conn, log)
+		for {
+			//	Read log entry from keyboard
+			reader := bufio.NewReader(os.Stdin)
 
-		//	Read message sent back from the server
-		message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Please enter a log: ")
 
-		//	Display the message
-		fmt.Println("Received back from server: " + message)
-	}// End if
-}// End main
+			log, _ := reader.ReadString('\n')
+
+			//	If '-q' is entered, client will stop the for loop
+			if strings.EqualFold(log, "-q\r\n") {
+				break
+			}
+
+			//	Send the log that the user entered into the socket
+			fmt.Fprintf(conn, log)
+			fmt.Println("log" + log)
+			//	Read message sent back from the server
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+
+			//	Display the message
+			fmt.Println("Received back from server: " + message)
+		}
+	} // End if
+} // End main
