@@ -9,6 +9,7 @@ import socket
 import os
 import logging
 from configparser import ConfigParser
+from datetime import datetime
 
 
 # CONSTANT DEFINITIONS
@@ -84,7 +85,12 @@ if not os.path.isfile(DIR+FILE_NAME):
 #   OPEN AND WRITE TO LOG FILE
 #
 ######################################################################################
-logging.basicConfig(filename=DIR+FILE_NAME, filemode=fileType, level=logging.DEBUG)
+logging.basicConfig(
+format='%(asctime)s %(levelname)-8s %(message)s',
+datefmt='%Y-%m-%d %H:%M:%S',
+filename=DIR+FILE_NAME, 
+filemode=fileType, 
+level=logging.DEBUG)
 
 
 
@@ -125,6 +131,7 @@ while 1:
     #   Accept the connection
     try:
         conn, addr = s.accept()
+        logging.info('Client connected')
     except e:
         if enableLog == 0:
             logging.critical('Error: Accepting client failed: %s' %e)
@@ -144,8 +151,11 @@ while 1:
 
     #   Display message
     if enableLog == 0:
+        #   Check for 'end' message, if received then exit loop
         if data.decode("utf-8") == END_SERVICE:
-            print("ENDING LOGGER.")
+            logging.info('End message received - shutting down server')
+            logging.info('Client disconnected')
+            print( "ENDING LOGGER.")
             break
         
         logging.debug(('Received: ', data))
@@ -154,5 +164,6 @@ while 1:
     conn.sendall(data)
 
     #   Close the socket connection
+    logging.info('Client disconnected')
     conn.close()
     

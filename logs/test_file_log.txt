@@ -1,2 +1,13 @@
-INFO:root:('Starting Log server on IP: ', '127.0.0.1', 50000)
-DEBUG:root:Current Version: 1.2
+2021-02-26 22:15:36 INFO     ('Starting Log server on IP: ', '127.0.0.1', 50000)
+2021-02-26 22:15:36 DEBUG    Current Version: 1.2
+2021-02-26 22:15:52 INFO     Client connected
+2021-02-26 22:15:52 DEBUG    ('Received: ', b'Program went goop\r\n')
+2021-02-26 22:15:52 INFO     Client disconnected
+2021-02-26 22:16:01 INFO     Client connected
+2021-02-26 22:16:01 DEBUG    ('Received: ', b'program went poop\r\n')
+2021-02-26 22:16:01 INFO     Client disconnected
+2021-02-26 22:16:08 INFO     Client connected
+2021-02-26 22:16:08 DEBUG    ('Received: ', b'shuttin er down\r\n')
+2021-02-26 22:16:08 INFO     Client disconnected
+2021-02-26 22:16:13 INFO     Client connected
+2021-02-26 22:16:13 INFO     Ending Log server
