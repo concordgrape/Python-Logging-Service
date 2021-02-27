@@ -1,7 +1,7 @@
 /*
 *	CLIENT.GO
 *	CREATED ON      :   02/22/21
-*   LAST UPDATED    :   02/23/21
+*   LAST UPDATED    :   02/26/21
  */
 
 package main
@@ -11,6 +11,10 @@ import (
 	"fmt"
 	"net"
 	"os"
+)
+
+const (
+	TEST_ARG = "-test"
 )
 
 func main() {
@@ -26,10 +30,12 @@ func main() {
 	fmt.Println(argv)
 
 	// Check if '-test' command line arg is given for automated testing
-	if (len(argv) == 1 && argv[0] == "-test"){
+	if (len(argv) == 1 && argv[0] == TEST_ARG){
 		
+		fmt.Println("Starting automated tests...")
+		// RUN THROUGH TESTS HERE ******
 
-
+	
 
 	// Manual log testing
 	} else {
@@ -52,5 +58,5 @@ func main() {
 
 		//	Display the message
 		fmt.Println("Recieved back from server: " + message)
-	}
-}
+	}// End if
+}// End main

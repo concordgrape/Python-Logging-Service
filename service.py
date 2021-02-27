@@ -139,7 +139,7 @@ while 1:
 
     #   Display message
     if enableLog == 0:
-        logging.debug(('Recieved: ', data))
+        logging.debug(('Received: ', data))
 
     #   Send the message back to the client
     conn.sendall(data)
