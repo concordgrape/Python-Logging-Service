@@ -27,7 +27,6 @@ func main() {
 
 	// Get arguments from the command line
 	argv := os.Args[1:]
-	fmt.Println(argv)
 
 	// Check if '-test' command line arg is given for automated testing
 	if (len(argv) == 1 && argv[0] == TEST_ARG){
@@ -57,6 +56,6 @@ func main() {
 		message, _ := bufio.NewReader(conn).ReadString('\n')
 
 		//	Display the message
-		fmt.Println("Recieved back from server: " + message)
+		fmt.Println("Received back from server: " + message)
 	}// End if
 }// End main

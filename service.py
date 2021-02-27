@@ -11,6 +11,8 @@ import logging
 from configparser import ConfigParser
 
 
+# CONSTANT DEFINITIONS
+END_SERVICE = "end\r\n"
 
 ######################################################################################
 #
@@ -107,16 +109,7 @@ if enableLog == 0:
     logging.info(('Starting Log server on IP: ', HOST, PORT))
     logging.debug('Current Version: 1.2')
 
-#   Listen for a client connection
-s.listen(1)
 
-#   Accept the connection
-try:
-    conn, addr = s.accept()
-except e:
-    if enableLog == 0:
-        logging.critical('Error: Accepting client failed: %s' %e)
-    sys.exit(1)
 
 
 ######################################################################################
@@ -125,6 +118,18 @@ except e:
 #
 ######################################################################################
 while 1:
+    
+    #   Listen for a client connection
+    s.listen(1)
+
+    #   Accept the connection
+    try:
+        conn, addr = s.accept()
+    except e:
+        if enableLog == 0:
+            logging.critical('Error: Accepting client failed: %s' %e)
+        sys.exit(1)
+
 
     try:
         data = conn.recv(1024)
@@ -139,6 +144,10 @@ while 1:
 
     #   Display message
     if enableLog == 0:
+        if data.decode("utf-8") == END_SERVICE:
+            print("ENDING LOGGER.")
+            break
+        
         logging.debug(('Received: ', data))
 
     #   Send the message back to the client
@@ -146,4 +155,4 @@ while 1:
 
     #   Close the socket connection
     conn.close()
-    break
+    
