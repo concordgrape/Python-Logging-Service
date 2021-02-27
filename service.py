@@ -16,7 +16,7 @@ from _thread import *
 #   CONSTANT DEFINITIONS
 END_SERVICE = "end\r\n"
 
-#   How many conns are connected
+#   How many clients are connected
 clientCount = 0
 
 ######################################################################################
@@ -31,6 +31,7 @@ config_object.read("config.ini")
 #   Define the IP information for the server socket
 HOST = config_object["SERVER-DETAILS"]["HOST"]
 PORT = int(config_object["SERVER-DETAILS"]["PORT"])
+MAX_CLIENTS = int(config_object["SERVER-DETAILS"]["MAX_CLIENTS"])
 
 DIR = config_object["LOG-DETAILS"]["DIR"]
 FILE_NAME = config_object["LOG-DETAILS"]["FILE_NAME"]
@@ -249,19 +250,36 @@ def acceptClient(conn, id):
 
 ######################################################################################
 #
-#   WAIT FOR conn CONNECTION(S)
+#   WAIT FOR CLIENT CONNECTION(S)
 #
 ######################################################################################
 
-#   Listen for a conn connection
+#   Listen for a client connection
 s.listen(5)
 
 #   Accept the connection
 try:
     while 1:
         conn, addr = s.accept()
-        clientCount += 1
-        start_new_thread(acceptClient, (conn, clientCount, ))
+        if clientCount < MAX_CLIENTS:
+            clientCount += 1
+            start_new_thread(acceptClient, (conn, clientCount, ))
+            if enableLog == 0:
+                if debugLog["isEnabled"] == '1':
+                    logging.debug("Starting new client thread, with ID: " + str(clientCount))
+                elif traceLog["isEnabled"] == '1':
+                    logging.getLogger().setLevel(TRACE)
+                    logging.log(TRACE, "Starting new client thread, with ID: " + str(clientCount))
+        else:
+            if fatalLog["isEnabled"] == '1':
+                logging.getLogger().setLevel(FATAL)
+                logging.log(FATAL, 'Error: Accepting client failed, Max clients have been reached')
+            elif traceLog["isEnabled"] == '1':
+                logging.getLogger().setLevel(TRACE)
+                logging.log(TRACE, 'Error: Accepting client failed, Max clients have been reached')
+            conn.close()
+            clientCount -= 1
+            break
         if enableLog == 0:
             if infoLog["isEnabled"] == '1':
                 logging.info("Client connected")

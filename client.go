@@ -50,7 +50,7 @@ func main() {
 
 			//	Send the log that the user entered into the socket
 			fmt.Fprintf(conn, log)
-			fmt.Println("log" + log)
+
 			//	Read message sent back from the server
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 
