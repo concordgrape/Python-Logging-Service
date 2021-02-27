@@ -1,7 +1,7 @@
 #
 #	SERVER.PY
 #	CREATED ON      :   02/22/21
-#   LAST UPDATED    :   02/25/21
+#   LAST UPDATED    :   02/27/21
 #
 
 
@@ -11,9 +11,13 @@ import logging
 import sys
 from configparser import ConfigParser
 from datetime import datetime
+from _thread import *
 
-# CONSTANT DEFINITIONS
+#   CONSTANT DEFINITIONS
 END_SERVICE = "end\r\n"
+
+#   How many conns are connected
+clientCount = 0
 
 ######################################################################################
 #
@@ -149,7 +153,8 @@ if enableLog == 0:
 
 #   Create the socket
 try:
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = socket.socket()
+    s.bind((HOST, PORT))
 except Exception as e:
     if enableLog == 0:
         if fatalLog["isEnabled"] == '1':
@@ -159,8 +164,6 @@ except Exception as e:
             logging.getLogger().setLevel(TRACE)
             logging.log(TRACE, 'Error: Creating socket failed: %s' %e)
     sys.exit(1)
-
-s.bind((HOST, PORT))
 
 #   Prompts that the server is running
 if enableLog == 0:
@@ -175,62 +178,46 @@ if enableLog == 0:
 
 
 
+
 ######################################################################################
 #
-#   WAIT TO RECEIVE DATA FROM CLIENT
+#   MULTI-THREADING FUNCTION (ALLOWS MULTIPLE connS)
 #
 ######################################################################################
-while 1:
-    #   Listen for a client connection
-    s.listen(1)
+def acceptClient(conn, id):
+    while 1:
+        try:
+            #   Recieve the passed data
+            data = conn.recv(2048)
+            response = data.decode('utf-8')
 
-    #   Accept the connection
-    try:
-        conn, addr = s.accept()
-        if enableLog == 0:
-            if infoLog["isEnabled"] == '1':
-                logging.info("Client connected")
-            elif traceLog["isEnabled"] == '1':
-                logging.getLogger().setLevel(TRACE)
-                logging.log(TRACE, 'Client connected')
-    except Exception as e:
-        if enableLog == 0:
-            if fatalLog["isEnabled"] == '1':
-                logging.getLogger().setLevel(FATAL)
-                logging.log(FATAL, 'Error: Accepting client failed: %s' %e)
-            elif traceLog["isEnabled"] == '1':
-                logging.getLogger().setLevel(TRACE)
-                logging.log(TRACE, 'Error: Accepting client failed: %s' %e)
-        sys.exit(1)
-
-
-    try:
-        while 1:
-            #   Check if data was recieved
-            data = conn.recv(1024)
+            #   Check if the data is equal to the ending variable
+            if response == END_SERVICE:
+                break
             if not data:
                 break
-            else:
-                #   Send the message back to the client
-                conn.sendall(data)
 
-                if debugLog["isEnabled"] == '1':
-                    logging.debug("Recieved data: %s" %data)
-                elif traceLog["isEnabled"] == '1':
-                    logging.getLogger().setLevel(TRACE)
-                    logging.log("Recieved data: %s" %data)
-    except Exception as e:
-        if enableLog == 0:
-            if fatalLog["isEnabled"] == '1':
-                logging.getLogger().setLevel(FATAL)
-                logging.log(FATAL, 'Error: Receiving data failed: %s' %e)
+            #   Send the passed data back to the client
+            conn.send(str.encode(response))
+
+            #   Log the passed data
+            if debugLog["isEnabled"] == '1':
+                logging.debug("Recieved data: " + str(data) + " from client: [" + str(id) + "]")
             elif traceLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(TRACE)
-                logging.log(TRACE, 'Error: Receiving data failed: %s' %e)
-                logging.log(TRACE, 'Server is shutting down...')
-        sys.exit(1)
+                logging.log("Recieved data: " + str(data) + " from client: [" + str(id) + "]")
+        #   If something FATAL happens
+        except Exception as e:
+            if enableLog == 0:
+                if fatalLog["isEnabled"] == '1':
+                    logging.getLogger().setLevel(FATAL)
+                    logging.log(FATAL, 'Error: Receiving data failed: %s' %e)
+                elif traceLog["isEnabled"] == '1':
+                    logging.getLogger().setLevel(TRACE)
+                    logging.log(TRACE, 'Error: Receiving data failed: %s' %e)
+                    logging.log(TRACE, 'Server is shutting down...')
+            sys.exit(1)
 
-    #   Display message
     if enableLog == 0:
         #   Check for 'end' message, if received then exit loop
         if data.decode("utf-8") == END_SERVICE:
@@ -242,14 +229,53 @@ while 1:
                 logging.getLogger().setLevel(TRACE)
                 logging.log(TRACE, 'End message received - shutting down server')
                 logging.log(TRACE, 'Client disconnected')
-            break
 
     #   Close the socket connection
     if enableLog == 0:
         if infoLog["isEnabled"] == '1':
-            logging.info('Client disconnected')
+            logging.info('conn disconnected')
         elif traceLog["isEnabled"] == '1':
             logging.getLogger().setLevel(TRACE)
-            logging.log(TRACE, 'Client disconnected')
+            logging.log(TRACE, 'conn disconnected')
     conn.close()
-    
+    #   Subtract one from the client count as this only counts connected clients
+    clientCount -= 1
+
+
+
+
+
+
+
+######################################################################################
+#
+#   WAIT FOR conn CONNECTION(S)
+#
+######################################################################################
+
+#   Listen for a conn connection
+s.listen(5)
+
+#   Accept the connection
+try:
+    while 1:
+        conn, addr = s.accept()
+        clientCount += 1
+        start_new_thread(acceptClient, (conn, clientCount, ))
+        if enableLog == 0:
+            if infoLog["isEnabled"] == '1':
+                logging.info("Client connected")
+                logging.info("Total clients connected: " + str(clientCount))
+            elif traceLog["isEnabled"] == '1':
+                logging.getLogger().setLevel(TRACE)
+                logging.log(TRACE, 'Client connected')
+                logging.log(TRACE, 'Total clients connected: ' + str(clientCount))
+except Exception as e:
+    if enableLog == 0:
+        if fatalLog["isEnabled"] == '1':
+            logging.getLogger().setLevel(FATAL)
+            logging.log(FATAL, 'Error: Accepting client failed: %s' %e)
+        elif traceLog["isEnabled"] == '1':
+            logging.getLogger().setLevel(TRACE)
+            logging.log(TRACE, 'Error: Accepting client failed: %s' %e)
+    sys.exit(1)

@@ -1,7 +1,7 @@
 /*
 *	CLIENT.GO
 *	CREATED ON      :   02/22/21
-*   LAST UPDATED    :   02/26/21
+*   LAST UPDATED    :   02/27/21
  */
 
 package main
@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"strings"
 )
 
 const (
@@ -48,11 +47,6 @@ func main() {
 			fmt.Println("Please enter a log: ")
 
 			log, _ := reader.ReadString('\n')
-
-			//	If '-q' is entered, client will stop the for loop
-			if strings.EqualFold(log, "-q\r\n") {
-				break
-			}
 
 			//	Send the log that the user entered into the socket
 			fmt.Fprintf(conn, log)
