@@ -11,11 +11,16 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 )
 
 const (
 	testArg = "-test"
 )
+
+func createTestString(flag, msg string) string {
+	return fmt.Sprintf("[%s]%s\r\n", strings.ToUpper(flag), msg)
+}
 
 func main() {
 
@@ -28,18 +33,74 @@ func main() {
 	// Get arguments from the command line
 	argv := os.Args[1:]
 
+	//	Create client side socket
+	conn, _ := net.Dial(protocolType, ip)
+
 	// Check if '-test' command line arg is given for automated testing
 	if len(argv) == 1 && argv[0] == testArg {
 
 		fmt.Println("Starting automated tests...")
 		// RUN THROUGH TESTS HERE ******
 
+		// 10 debug test messages
+		fmt.Println("DEBUG TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("all", "All test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 trace test messages
+		fmt.Println("TRACE TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("trace", "Trace test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 debug test messages
+		fmt.Println("DEBUG TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("debug", "Debug test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 info test messages
+		fmt.Println("INFO TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("info", "Info test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 warn test messages
+		fmt.Println("WARN TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("warn", "Warn test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 error test messages
+		fmt.Println("ERROR TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("error", "Error test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+		// 10 fatal test messages
+		fmt.Println("FATAL TEST MESSAGES***************************************************")
+		for i := 0; i < 10; i++ {
+			fmt.Fprintf(conn, createTestString("fatal", "Fatal test message"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
+
+
 		// Manual log testing
 	} else {
-
-		//	Create client side socket
-		conn, _ := net.Dial(protocolType, ip)
-
 		for {
 			//	Read log entry from keyboard
 			reader := bufio.NewReader(os.Stdin)

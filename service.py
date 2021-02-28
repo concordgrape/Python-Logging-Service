@@ -186,6 +186,7 @@ if enableLog == 0:
 #
 ######################################################################################
 def acceptClient(conn, id):
+    global clientCount
     while 1:
         try:
             #   Recieve the passed data
@@ -238,6 +239,7 @@ def acceptClient(conn, id):
                     logging.log(TRACE, "received data: " + str(data) + " from client: [" + str(id) + "]")
         #   If something FATAL happens
         except Exception as e:
+            clientCount -= 1;
             if enableLog == 0:
                 if fatalLog["isEnabled"] == '1':
                     logging.getLogger().setLevel(FATAL)
@@ -252,12 +254,12 @@ def acceptClient(conn, id):
         #   Check for 'end' message, if received then exit loop
         if data.decode("utf-8") == END_SERVICE:
             if debugLog["isEnabled"] == '1':
-                logging.debug('End message received - shutting down server')
+                logging.debug('End message received - closing connection with client')
             elif infoLog["isEnabled"] == '1':
                 logging.info('Client disconnected')
             elif traceLog["isEnabled"] == '1':
                 logging.getLogger().setLevel(TRACE)
-                logging.log(TRACE, 'End message received - shutting down server')
+                logging.log(TRACE, 'End message received - closing connection with client')
                 logging.log(TRACE, 'Client disconnected')
 
     #   Close the socket connection
@@ -269,7 +271,6 @@ def acceptClient(conn, id):
             logging.log(TRACE, 'Client disconnected')
     conn.close()
     #   Grab the clientCount variable
-    global clientCount
     clientCount -= 1
 
 
