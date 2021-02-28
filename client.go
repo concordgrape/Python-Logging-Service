@@ -116,6 +116,11 @@ func main() {
 			//	Read message sent back from the server
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 
+			// Stop sending logs on 'end' send
+			if log == "end\r\n" {
+				break;
+			}
+
 			//	Display the message
 			fmt.Println("Received back from server: " + message)
 		}

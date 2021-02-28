@@ -353,3 +353,25 @@
 2021-02-28 02:05:58 INFO     Client connected
 2021-02-28 02:05:58 INFO     Total clients connected: 1
 2021-02-28 02:05:59 DEBUG    received data: b'hi?\r\n' from client: [1]
+2021-02-28 02:08:47 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
+2021-02-28 02:08:49 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 02:08:49 INFO     Client connected
+2021-02-28 02:08:49 INFO     Total clients connected: 1
+2021-02-28 02:08:50 DEBUG    received data: b'hi\r\n' from client: [1]
+2021-02-28 02:09:34 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
+2021-02-28 02:09:36 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 02:09:36 INFO     Client connected
+2021-02-28 02:09:36 INFO     Total clients connected: 1
+2021-02-28 02:09:38 DEBUG    received data: b'hi\r\n' from client: [1]
+2021-02-28 02:09:56 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
+2021-02-28 02:09:58 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 02:09:58 INFO     Client connected
+2021-02-28 02:09:58 INFO     Total clients connected: 1
+2021-02-28 02:10:00 DEBUG    received data: b'hi\r\n' from client: [1]
+2021-02-28 02:10:03 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
+2021-02-28 02:10:20 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 02:10:20 INFO     Client connected
+2021-02-28 02:10:20 INFO     Total clients connected: 1
+2021-02-28 02:10:21 DEBUG    received data: b'hello\r\n' from client: [1]
+2021-02-28 02:10:32 DEBUG    End message received - shutting down server
+2021-02-28 02:10:32 INFO     Client disconnected
