@@ -12,10 +12,12 @@ import (
 	"net"
 	"os"
 	"strings"
+	"strconv"
 )
 
 const (
 	testArg = "-test"
+	noiseArg = "-noise"
 )
 
 func createTestString(flag, msg string) string {
@@ -98,13 +100,29 @@ func main() {
 			fmt.Println("Received back from server: " + message)
 		}
 
-		for i := 0; i < 200; i++ {
-			fmt.Fprintf(conn, createTestString("fatal", "SPAM MESSAGE"))
+		//	Stop testing
+		fmt.Fprintf(conn, "end/r/n")
+		fmt.Println("END TESTING***************************************************")
+	
+	// Noisy client 
+	} else if len(argv) == 2 && argv[0] == noiseArg {
+		count,err := strconv.Atoi(argv[1])
+		fmt.Println(count)
+		fmt.Println(err)
+
+		if err != nil {
+			count = 100	// default loop value
+		}
+	
+		for i := 0; i < count; i++ {
+			fmt.Fprintf(conn, createTestString("FATAL", "SPAM MESSAGE"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
 		}
+		
 
-		// Manual log testing
+
+	// Manual log testing
 	} else {
 		for {
 			//	Read log entry from keyboard

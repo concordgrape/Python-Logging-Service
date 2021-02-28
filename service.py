@@ -210,6 +210,7 @@ def acceptClient(conn, id):
                 #   If the 100 messages were sent in under 2 seconds do something (disconnect from client)
                 if (time.perf_counter() - timeoutCounter) < 2:
                     print("TOO MANY MESSAGES")  #   This has to be changed
+                    break
                 else:
                     #   Reset variables if no timeout is needed
                     msgCounter = 0
@@ -229,7 +230,7 @@ def acceptClient(conn, id):
                         logging.log(TRACE, "Custom log entry received: " + str(data))
                     try:
                         msg = (response[response.find(']') + 1 : len(response)]).replace('\r\n', '')
-                        if flag == "DEBUG":
+                        if flag == "DEBUG" and debugLog["isEnabled"] == '1':
                             logging.debug(msg)
                         elif flag == "FATAL":
                             logging.getLogger().setLevel(FATAL)
