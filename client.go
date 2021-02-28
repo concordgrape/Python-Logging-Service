@@ -48,6 +48,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("all", "All test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 trace test messages
@@ -56,6 +59,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("trace", "Trace test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 debug test messages
@@ -64,6 +70,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("debug", "Debug test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 info test messages
@@ -72,6 +81,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("info", "Info test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 warn test messages
@@ -80,6 +92,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("warn", "Warn test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 error test messages
@@ -88,6 +103,9 @@ func main() {
 			fmt.Fprintf(conn, createTestString("error", "Error test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// 10 fatal test messages
@@ -96,12 +114,18 @@ func main() {
 			fmt.Fprintf(conn, createTestString("fatal", "Fatal test message"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		for i := 0; i < 200; i++ {
 			fmt.Fprintf(conn, createTestString("fatal", "SPAM MESSAGE"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 
 		// Manual log testing
@@ -123,11 +147,14 @@ func main() {
 
 			// Stop sending logs on 'end' send
 			if log == "end\r\n" {
-				break;
+				break
 			}
 
 			//	Display the message
 			fmt.Println("Received back from server: " + message)
+			if message == "" {
+				return
+			}
 		}
 	} // End if
 } // End main

@@ -16,6 +16,8 @@ from _thread import *
 
 #   CONSTANT DEFINITIONS
 END_SERVICE = "end\r\n"
+MAX_MESSAGES = 100
+MAX_READABLE_BYTES = 2048
 
 #   How many clients are connected
 clientCount = 0
@@ -194,7 +196,7 @@ def acceptClient(conn, id):
     while 1:
         try:
             #   Recieve the passed data
-            data = conn.recv(2048)
+            data = conn.recv(MAX_READABLE_BYTES)
             response = data.decode('utf-8')
 
             #   Check if the data is equal to the ending variable
@@ -205,17 +207,22 @@ def acceptClient(conn, id):
 
             msgCounter += 1
             #   Checks how much time has elapsed for 100 messages
-            if msgCounter > 100:
-                #   print(time.perf_counter() - timeoutCounter)
+            if msgCounter > MAX_MESSAGES:
                 #   If the 100 messages were sent in under 2 seconds do something (disconnect from client)
                 if (time.perf_counter() - timeoutCounter) < 2:
-                    print("TOO MANY MESSAGES")  #   This has to be changed
+                    if enableLog == 0:
+                        if fatalLog["isEnabled"] == '1':
+                            logging.getLogger().setLevel(FATAL)
+                            logging.log(FATAL, "Error: Too many messages were sent in a short period of time, closing connection to client")
+                        elif traceLog["isEnabled"] == '1':
+                            logging.getLogger().setLevel(TRACE)
+                            logging.log(TRACE, "Too many messages were sent in a short period of time, closing connection to client")
+                    conn.close()
+                    clientCount -= 1
                 else:
                     #   Reset variables if no timeout is needed
                     msgCounter = 0
                     timeoutCounter = time.perf_counter()
-                    
-
 
             #   Send the passed data back to the client
             conn.send(str.encode(response))
@@ -257,7 +264,7 @@ def acceptClient(conn, id):
                     logging.log(TRACE, "received data: " + str(data) + " from client: [" + str(id) + "]")
         #   If something FATAL happens
         except Exception as e:
-            clientCount -= 1;
+            clientCount -= 1
             if enableLog == 0:
                 if fatalLog["isEnabled"] == '1':
                     logging.getLogger().setLevel(FATAL)
