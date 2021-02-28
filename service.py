@@ -61,6 +61,7 @@ try:
                 formatted = formatted + char
     else:
         _DEFAULT = FORMAT_DEFAULT
+        customFormat = False
     if formatted != '':
         _DEFAULT = formatted
         customFormat = True
@@ -184,8 +185,7 @@ if enableLog == 0:
             logging.debug("Custom format successfully configured")
     else:
         if traceLog["isEnabled"] == '1':
-            logging.getLogger().setLevel(TRACE)
-            logging.log(TRACE, 'Custom format NOT configured, using default')
+            logging.info('Custom format NOT configured, using default')
         elif debugLog["isEnabled"] == '1':
             logging.debug("Custom format NOT configured, using default")
         
