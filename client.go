@@ -1,8 +1,15 @@
 /*
-*	CLIENT.GO
+*	FILENAME        :   client.go
+*   PROJECT         :   SENG2040_A3
+*   DESCRIPTION     :   This program allows the user to connect to the logging service and send logs.
+*						This can be done manually if no command switches are used, if -test is used 
+*						the program will autmatically send 10 test logs for each log level before the
+*						connection is closed, if -noise <count> is used the program will send fatal 
+*						logs *count times in order to test the services noise handling.
+*   AUTHORS         :   Sky Roth, Liam Schoel
 *	CREATED ON      :   02/22/21
-*   LAST UPDATED    :   02/27/21
- */
+*   LAST UPDATED    :   02/28/21
+*/
 
 package main
 
@@ -136,6 +143,7 @@ func main() {
 		}
 	
 		for i := 0; i < count; i++ {
+			fmt.Println(i)
 			fmt.Fprintf(conn, createTestString("FATAL", "SPAM MESSAGE"))
 			message, _ := bufio.NewReader(conn).ReadString('\n')
 			fmt.Println("Received back from server: " + message)

@@ -1,7 +1,13 @@
 #
-#	SERVER.PY
+#	FILENAME        :   service.py
+#   PROJECT         :   SENG2040_A3
+#   DESCRIPTION     :   This program reads log configuration details from config.ini which determine
+#                       network details, log format, log levels etc. It then listens for and connects
+#                       to clients via tcp, reads a message from them, sends a response, and logs the 
+#                       message according to the settings.
+#   AUTHORS         :   Sky Roth, Liam Schoel
 #	CREATED ON      :   02/22/21
-#   LAST UPDATED    :   02/27/21
+#   LAST UPDATED    :   02/28/21
 #
 
 
