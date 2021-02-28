@@ -16,9 +16,12 @@ from _thread import *
 
 #   CONSTANT DEFINITIONS
 END_SERVICE = "end\r\n"
+MAX_MESSAGES = 100
+MAX_READABLE_BYTES = 2048
 
 #   How many clients are connected
 clientCount = 0
+FORMAT_DEFAULT = '%(asctime)s %(levelname)-8s %(message)s'
 
 ######################################################################################
 #
@@ -36,6 +39,35 @@ MAX_CLIENTS = int(config_object["SERVER-DETAILS"]["MAX_CLIENTS"])
 
 DIR = config_object["LOG-DETAILS"]["DIR"]
 FILE_NAME = config_object["LOG-DETAILS"]["FILE_NAME"]
+_DEFAULT = config_object["LOG-DETAILS"]["FORMAT"]
+
+#   If user entered 'DEFAULT' allow the format to be in the default format
+if _DEFAULT == 'DEFAULT':
+    _DEFAULT = FORMAT_DEFAULT
+
+
+#   Format the customer format that the user inputted in config.ini
+customFormat = True
+try:
+    formatted = ''
+    if _DEFAULT != DEFAULT or _DEFAULT != FORMAT_DEFAULT:
+        for char in _DEFAULT:
+            if char == '(' or char == ')':
+                if char == '(':
+                    formatted = formatted + '%' + char
+                if char == ')':
+                    formatted = formatted + char + 's'
+            else:
+                formatted = formatted + char
+    else:
+        _DEFAULT = FORMAT_DEFAULT
+        customFormat = False
+    if formatted != '':
+        _DEFAULT = formatted
+        customFormat = True
+except:
+    _DEFAULT = FORMAT_DEFAULT
+    customFormat = False
 
 ######################################################################################
 #
@@ -133,7 +165,7 @@ logging.Logger.trace = trace
 #
 ######################################################################################
 logging.basicConfig(
-format='%(asctime)s %(levelname)-8s %(message)s',
+format=_DEFAULT,
 datefmt='%Y-%m-%d %H:%M:%S',
 filename=DIR+FILE_NAME, 
 filemode=fileType, 
@@ -145,6 +177,17 @@ if enableLog == 0:
         logging.log(TRACE, 'Completed basic logging config')
         logging.log(TRACE, 'Log file directory: %s', DIR)
         logging.log(TRACE, 'Log file name: %s', FILE_NAME)
+    if customFormat:
+        if traceLog["isEnabled"] == '1':
+            logging.getLogger().setLevel(TRACE)
+            logging.log(TRACE, 'Custom format successfully configured')
+        elif debugLog["isEnabled"] == '1':
+            logging.debug("Custom format successfully configured")
+    else:
+        if traceLog["isEnabled"] == '1':
+            logging.info('Custom format NOT configured, using default')
+        elif debugLog["isEnabled"] == '1':
+            logging.debug("Custom format NOT configured, using default")
         
 
 ######################################################################################
@@ -194,7 +237,7 @@ def acceptClient(conn, id):
     while 1:
         try:
             #   Recieve the passed data
-            data = conn.recv(2048)
+            data = conn.recv(MAX_READABLE_BYTES)
             response = data.decode('utf-8')
 
             #   Check if the data is equal to the ending variable
@@ -205,18 +248,22 @@ def acceptClient(conn, id):
 
             msgCounter += 1
             #   Checks how much time has elapsed for 100 messages
-            if msgCounter > 100:
-                #   print(time.perf_counter() - timeoutCounter)
+            if msgCounter > MAX_MESSAGES:
                 #   If the 100 messages were sent in under 2 seconds do something (disconnect from client)
                 if (time.perf_counter() - timeoutCounter) < 2:
-                    print("TOO MANY MESSAGES")  #   This has to be changed
-                    break
+                    if enableLog == 0:
+                        if fatalLog["isEnabled"] == '1':
+                            logging.getLogger().setLevel(FATAL)
+                            logging.log(FATAL, "Error: Too many messages were sent in a short period of time, closing connection to client")
+                        elif traceLog["isEnabled"] == '1':
+                            logging.getLogger().setLevel(TRACE)
+                            logging.log(TRACE, "Too many messages were sent in a short period of time, closing connection to client")
+                    conn.close()
+                    clientCount -= 1
                 else:
                     #   Reset variables if no timeout is needed
                     msgCounter = 0
                     timeoutCounter = time.perf_counter()
-                    
-
 
             #   Send the passed data back to the client
             conn.send(str.encode(response))
@@ -258,7 +305,7 @@ def acceptClient(conn, id):
                     logging.log(TRACE, "received data: " + str(data) + " from client: [" + str(id) + "]")
         #   If something FATAL happens
         except Exception as e:
-            clientCount -= 1;
+            clientCount -= 1
             if enableLog == 0:
                 if fatalLog["isEnabled"] == '1':
                     logging.getLogger().setLevel(FATAL)
