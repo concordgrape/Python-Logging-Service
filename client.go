@@ -45,6 +45,7 @@ func main() {
 			reader := bufio.NewReader(os.Stdin)
 
 			fmt.Println("Please enter a log: ")
+			fmt.Println("Log file format: [FLAG]<log>")
 
 			log, _ := reader.ReadString('\n')
 

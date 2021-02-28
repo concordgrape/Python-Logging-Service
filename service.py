@@ -201,12 +201,42 @@ def acceptClient(conn, id):
             #   Send the passed data back to the client
             conn.send(str.encode(response))
 
-            #   Log the passed data
-            if debugLog["isEnabled"] == '1':
-                logging.debug("Recieved data: " + str(data) + " from client: [" + str(id) + "]")
-            elif traceLog["isEnabled"] == '1':
-                logging.getLogger().setLevel(TRACE)
-                logging.log("Recieved data: " + str(data) + " from client: [" + str(id) + "]")
+            #   Custom log entries
+            flag = response[response.find('[') + 1 : response.find(']')]
+            if (response.find('[') + 1) > 0 and (response.find(']')) > 0:
+                if enableLog == 0:
+                    if traceLog["isEnabled"] == '1':
+                        logging.getLogger().setLevel(TRACE)
+                        logging.log(TRACE, "Custom log entry received: " + str(data))
+                    try:
+                        msg = (response[response.find(']') + 1 : len(response)]).replace('\r\n', '')
+                        if flag == "DEBUG":
+                            logging.debug(msg)
+                        elif flag == "FATAL":
+                            logging.getLogger().setLevel(FATAL)
+                            logging.log(FATAL, msg)
+                        elif flag == "ERROR":
+                            logging.getLogger().setLevel(ERROR)
+                            logging.log(ERROR, msg)
+                        elif flag == "WARN":
+                            logging.warning(msg)
+                        elif flag == "INFO":
+                            logging.info(msg)
+                        elif flag == "TRACE":
+                            logging.getLogger().setLevel(TRACE)
+                            logging.log(TRACE, msg)
+                        else:
+                            logging.getLogger().setLevel(ERROR)
+                            logging.log(ERROR, "Entered flag doesn't exist: " + flag)
+                    except:
+                        logging.log(FATAL, "Error: Flag not found: " + flag)
+            else:
+                #   Log the passed data
+                if debugLog["isEnabled"] == '1':
+                    logging.debug("received data: " + str(data) + " from client: [" + str(id) + "]")
+                elif traceLog["isEnabled"] == '1':
+                    logging.getLogger().setLevel(TRACE)
+                    logging.log(TRACE, "received data: " + str(data) + " from client: [" + str(id) + "]")
         #   If something FATAL happens
         except Exception as e:
             if enableLog == 0:
@@ -234,12 +264,13 @@ def acceptClient(conn, id):
     #   Close the socket connection
     if enableLog == 0:
         if infoLog["isEnabled"] == '1':
-            logging.info('conn disconnected')
+            logging.info('Client disconnected')
         elif traceLog["isEnabled"] == '1':
             logging.getLogger().setLevel(TRACE)
-            logging.log(TRACE, 'conn disconnected')
+            logging.log(TRACE, 'Client disconnected')
     conn.close()
-    #   Subtract one from the client count as this only counts connected clients
+    #   Grab the clientCount variable
+    global clientCount
     clientCount -= 1
 
 

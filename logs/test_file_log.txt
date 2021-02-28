@@ -1,0 +1,10 @@
+2021-02-27 19:29:40 TRACE    Completed basic logging config
+2021-02-27 19:29:40 TRACE    Log file directory: ./logs/
+2021-02-27 19:29:40 TRACE    Log file name: test_file_log.txt
+2021-02-27 19:29:40 INFO     Starting Log server on IP: 127.0.0.150000
+2021-02-27 19:29:45 DEBUG    Starting new client thread, with ID: 1
+2021-02-27 19:29:45 INFO     Client connected
+2021-02-27 19:29:45 INFO     Total clients connected: 1
+2021-02-27 19:29:50 TRACE    Custom log entry received: b'[WARN]This is a test\r\n'
+2021-02-27 19:29:50 WARNING  This is a test
+2021-02-27 19:30:08 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
