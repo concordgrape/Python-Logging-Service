@@ -10,7 +10,7 @@ Project is created with:
 	
 ## Setup
 To run this project, enable logging flags in the config file, then start the server
-To run tests, enter '-test- as a command line argument on the client side
+To run tests, enter '-test' as a command line argument on the client side
 
 ```
 $ 'cd ../SENG2040-A2'
