@@ -216,8 +216,7 @@ def acceptClient(conn, id):
                             logging.getLogger().setLevel(FATAL)
                             logging.log(FATAL, msg)
                         elif flag == "ERROR":
-                            logging.getLogger().setLevel(ERROR)
-                            logging.log(ERROR, msg)
+                            logging.error(msg)
                         elif flag == "WARN":
                             logging.warning(msg)
                         elif flag == "INFO":
