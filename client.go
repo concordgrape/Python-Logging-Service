@@ -98,6 +98,11 @@ func main() {
 			fmt.Println("Received back from server: " + message)
 		}
 
+		for i := 0; i < 200; i++ {
+			fmt.Fprintf(conn, createTestString("fatal", "SPAM MESSAGE"))
+			message, _ := bufio.NewReader(conn).ReadString('\n')
+			fmt.Println("Received back from server: " + message)
+		}
 
 		// Manual log testing
 	} else {

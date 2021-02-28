@@ -9,6 +9,7 @@ import socket
 import os
 import logging
 import sys
+import time
 from configparser import ConfigParser
 from datetime import datetime
 from _thread import *
@@ -187,6 +188,9 @@ if enableLog == 0:
 ######################################################################################
 def acceptClient(conn, id):
     global clientCount
+    timeoutCounter = time.perf_counter()    # get start time
+    msgCounter = 0
+
     while 1:
         try:
             #   Recieve the passed data
@@ -198,6 +202,20 @@ def acceptClient(conn, id):
                 break
             if not data:
                 break
+
+            msgCounter += 1
+            #   Checks how much time has elapsed for 100 messages
+            if msgCounter > 100:
+                #   print(time.perf_counter() - timeoutCounter)
+                #   If the 100 messages were sent in under 2 seconds do something (disconnect from client)
+                if (time.perf_counter() - timeoutCounter) < 2:
+                    print("TOO MANY MESSAGES")  #   This has to be changed
+                else:
+                    #   Reset variables if no timeout is needed
+                    msgCounter = 0
+                    timeoutCounter = time.perf_counter()
+                    
+
 
             #   Send the passed data back to the client
             conn.send(str.encode(response))
