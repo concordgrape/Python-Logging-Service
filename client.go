@@ -2,14 +2,14 @@
 *	FILENAME        :   client.go
 *   PROJECT         :   SENG2040_A3
 *   DESCRIPTION     :   This program allows the user to connect to the logging service and send logs.
-*						This can be done manually if no command switches are used, if -test is used 
+*						This can be done manually if no command switches are used, if -test is used
 *						the program will autmatically send 10 test logs for each log level before the
-*						connection is closed, if -noise <count> is used the program will send fatal 
+*						connection is closed, if -noise <count> is used the program will send fatal
 *						logs *count times in order to test the services noise handling.
 *   AUTHORS         :   Sky Roth, Liam Schoel
 *	CREATED ON      :   02/22/21
 *   LAST UPDATED    :   02/28/21
-*/
+ */
 
 package main
 
@@ -18,12 +18,12 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 const (
-	testArg = "-test"
+	testArg  = "-test"
 	noiseArg = "-noise"
 )
 
@@ -35,16 +35,16 @@ func main() {
 
 	//	Source for sockets in Golang: https://golangr.com/socket-client/
 
-	//	Define variables for the socket -> must be changed for ZeroTier
-	protocolType := "tcp"
-	//ip := "127.0.0.1:50000"
-	//ip := "172.26.254.169:50000"
-	ip := "172.26.222.171:50000"
-	//ip := "10.119.16.241:50006"
-	//ip := "192.168.0.15:50000"
-
 	// Get arguments from the command line
 	argv := os.Args[1:]
+
+	//	Define variables for the socket -> must be changed for ZeroTier
+	if len(argv) == 0 {
+		fmt.Println("Error: The first argument must be the IP address of the server")
+		return
+	}
+	protocolType := "tcp"
+	ip := argv[0] + ":50000"
 
 	//	Create client side socket
 	conn, err := net.Dial(protocolType, ip)
@@ -53,7 +53,7 @@ func main() {
 	}
 
 	// Check if '-test' command line arg is given for automated testing
-	if len(argv) == 1 && argv[0] == testArg {
+	if len(argv) == 2 && argv[1] == testArg {
 
 		fmt.Println("Starting automated tests...")
 		// RUN THROUGH TESTS HERE ******
@@ -138,17 +138,17 @@ func main() {
 		//	Stop testing
 		fmt.Fprintf(conn, "end/r/n")
 		fmt.Println("END TESTING***************************************************")
-	
-	// Noisy client 
-	} else if len(argv) == 2 && argv[0] == noiseArg {
-		count,err := strconv.Atoi(argv[1])
+
+		// Noisy client
+	} else if len(argv) == 3 && argv[1] == noiseArg {
+		count, err := strconv.Atoi(argv[2])
 		fmt.Println(count)
 		fmt.Println(err)
 
 		if err != nil {
-			count = 100	// default loop value
+			count = 100 // default loop value
 		}
-	
+
 		for i := 0; i < count; i++ {
 			fmt.Println(i)
 			fmt.Fprintf(conn, createTestString("FATAL", "SPAM MESSAGE"))
@@ -158,10 +158,8 @@ func main() {
 				return
 			}
 		}
-		
 
-
-	// Manual log testing
+		// Manual log testing
 	} else {
 		for {
 			//	Read log entry from keyboard
