@@ -40,16 +40,15 @@ func main() {
 
 	//	Define variables for the socket -> must be changed for ZeroTier
 	if len(argv) == 0 {
-		fmt.Println("Error: The first argument must be the IP address of the server")
+		fmt.Println("Error: The first argument must be the IP address and port of the server")
 		return
 	}
 
 	//	Define the IP details from passed argument
 	protocolType := "tcp"
-	ip := argv[0] + ":50000"
 
 	//	Create client side socket
-	conn, err := net.Dial(protocolType, ip)
+	conn, err := net.Dial(protocolType, argv[0])
 	if err != nil {
 		fmt.Println(err)
 	}
