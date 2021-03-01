@@ -37,13 +37,20 @@ func main() {
 
 	//	Define variables for the socket -> must be changed for ZeroTier
 	protocolType := "tcp"
-	ip := "127.0.0.1:50000"
+	//ip := "127.0.0.1:50000"
+	//ip := "172.26.254.169:50000"
+	ip := "172.26.222.171:50000"
+	//ip := "10.119.16.241:50006"
+	//ip := "192.168.0.15:50000"
 
 	// Get arguments from the command line
 	argv := os.Args[1:]
 
 	//	Create client side socket
-	conn, _ := net.Dial(protocolType, ip)
+	conn, err := net.Dial(protocolType, ip)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	// Check if '-test' command line arg is given for automated testing
 	if len(argv) == 1 && argv[0] == testArg {

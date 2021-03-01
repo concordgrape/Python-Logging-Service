@@ -24,6 +24,7 @@ from _thread import *
 END_SERVICE = "end\r\n"
 MAX_MESSAGES = 100
 MAX_READABLE_BYTES = 2048
+TIMEOUT = 10
 
 #   How many clients are connected
 clientCount = 0
@@ -204,7 +205,7 @@ if enableLog == 0:
 
 #   Create the socket
 try:
-    s = socket.socket()
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((HOST, PORT))
 except Exception as e:
     if enableLog == 0:
@@ -219,7 +220,7 @@ except Exception as e:
 #   Prompts that the server is running
 if enableLog == 0:
     if infoLog["isEnabled"] == '1':
-        logging.info('Starting Log server on IP: %s%s', HOST, PORT)
+        logging.info('Starting Log server on IP: %s:%s', HOST, PORT)
     elif debugLog["isEnabled"] == '1':
         logging.debug('Current Version: 1.2')
     elif traceLog["isEnabled"] == '1':
@@ -256,7 +257,7 @@ def acceptClient(conn, id):
             #   Checks how much time has elapsed for 100 messages
             if msgCounter > MAX_MESSAGES:
                 #   If the 100 messages were sent in under 2 seconds do something (disconnect from client)
-                if (time.perf_counter() - timeoutCounter) < 2:
+                if (time.perf_counter() - timeoutCounter) < TIMEOUT:
                     if enableLog == 0:
                         if fatalLog["isEnabled"] == '1':
                             logging.getLogger().setLevel(FATAL)

@@ -1,0 +1,345 @@
+2021-02-28 20:32:14 TRACE    Completed basic logging config
+2021-02-28 20:32:14 TRACE    Log file directory: ./logs/
+2021-02-28 20:32:14 TRACE    Log file name: test_file_log.txt
+2021-02-28 20:32:14 INFO     Custom format NOT configured, using default
+2021-02-28 20:32:14 INFO     Starting Log server on IP: 172.26.254.169:50000
+2021-02-28 20:32:42 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 20:32:42 INFO     Client connected
+2021-02-28 20:32:42 INFO     Total clients connected: 1
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[ALL]All test message\r\n'
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[TRACE]Trace test message\r\n'
+2021-02-28 20:32:42 TRACE    Trace test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:42 DEBUG    Debug test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:42 DEBUG    Debug test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:42 DEBUG    Debug test message
+2021-02-28 20:32:42 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:42 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[DEBUG]Debug test message\r\n'
+2021-02-28 20:32:43 DEBUG    Debug test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[INFO]Info test message\r\n'
+2021-02-28 20:32:43 INFO     Info test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[WARN]Warn test message\r\n'
+2021-02-28 20:32:43 WARNING  Warn test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:43 ERROR    Error test message
+2021-02-28 20:32:43 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:43 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[ERROR]Error test message\r\n'
+2021-02-28 20:32:44 ERROR    Error test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 TRACE    Custom log entry received: b'[FATAL]Fatal test message\r\n'
+2021-02-28 20:32:44 FATAL    Fatal test message
+2021-02-28 20:32:44 DEBUG    received data: b'end/r/n' from client: [1]
+2021-02-28 20:32:44 FATAL    Error: Receiving data failed: [WinError 10054] An existing connection was forcibly closed by the remote host
+2021-02-28 20:33:41 DEBUG    Starting new client thread, with ID: 1
+2021-02-28 20:33:41 INFO     Client connected
+2021-02-28 20:33:41 INFO     Total clients connected: 1
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:41 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:41 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:42 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:42 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:43 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:43 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:44 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:44 FATAL    SPAM MESSAGE
+2021-02-28 20:33:45 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:45 FATAL    SPAM MESSAGE
+2021-02-28 20:33:45 TRACE    Custom log entry received: b'[FATAL]SPAM MESSAGE\r\n'
+2021-02-28 20:33:45 FATAL    SPAM MESSAGE
+2021-02-28 20:33:45 FATAL    Error: Too many messages were sent in a short period of time, closing connection to client
+2021-02-28 20:33:45 FATAL    Error: Receiving data failed: [WinError 10038] An operation was attempted on something that is not a socket
