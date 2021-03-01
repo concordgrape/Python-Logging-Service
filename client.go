@@ -43,6 +43,8 @@ func main() {
 		fmt.Println("Error: The first argument must be the IP address of the server")
 		return
 	}
+
+	//	Define the IP details from passed argument
 	protocolType := "tcp"
 	ip := argv[0] + ":50000"
 
